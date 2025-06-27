@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HLVRSXcraft - Сервер Minecraft</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -25,7 +26,9 @@
             }
         }
     </script>
+    <!-- Font Awesome для иконок -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Three.js для интерактивного фона (базовый пример) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         body {
@@ -123,6 +126,7 @@
     </style>
 </head>
 <body class="flex flex-col items-center justify-start min-h-screen p-4 sm:p-6 md:p-8">
+    <!-- Навигационная панель -->
     <nav class="w-full bg-custom-black bg-opacity-80 rounded-lg shadow-lg py-4 px-6 mb-8 fixed top-0 left-0 right-0 z-50 flex justify-center">
         <ul class="flex flex-wrap justify-center gap-4 sm:gap-6">
             <li><a href="#home" class="text-custom-white hover:text-custom-blue transition-colors duration-200 font-semibold text-lg" onclick="showSection('home')">Главная</a></li>
@@ -133,23 +137,29 @@
         </ul>
     </nav>
 
+    <!-- Canvas для Three.js фона -->
     <canvas id="threejs-background"></canvas>
 
+    <!-- Основной контент (отступ сверху для навигации) -->
     <main class="w-full max-w-4xl mx-auto mt-24">
+        <!-- Секция "Главная" -->
         <section id="home" class="bg-custom-black rounded-lg shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue relative">
             <h1 class="text-4xl sm:text-5xl font-bold text-center mb-6 text-custom-blue">
                 HLVRSXcraft
             </h1>
 
+            <!-- Блок статуса сервера -->
             <div class="text-center mb-6">
                 <p class="text-lg sm:text-xl font-semibold mb-2">Статус сервера:</p>
                 <div class="flex items-center justify-center gap-2 text-custom-white text-xl sm:text-2xl bg-custom-dark-blue rounded-md p-3 sm:p-4 border border-custom-blue inline-flex">
                     <span id="server-status-dot" class="w-4 h-4 rounded-full"></span>
                     <span id="server-status-text">Загрузка...</span>
+                    <!-- Элемент для отображения количества игроков -->
                     <span id="players-online-text"></span>
                 </div>
             </div>
 
+            <!-- Контейнер IP и кнопки -->
             <div class="text-center mb-6">
                 <p class="text-lg sm:text-xl font-semibold mb-2">IP сервера:</p>
                 <div class="ip-container">
@@ -175,6 +185,7 @@
             </p>
         </section>
 
+        <!-- Секция "О сервере" -->
         <section id="about" class="bg-custom-black rounded-lg shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue">
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-6 text-custom-blue">
                 <i class="fas fa-info-circle mr-3"></i>О сервере
@@ -185,12 +196,14 @@
             <p class="text-custom-white text-base sm:text-lg leading-relaxed bg-custom-dark-blue rounded-md p-4 sm:p-5 border border-custom-blue">
                 Ядро сервера PaperMC обеспечивает стабильность и высокую производительность, что позволяет вам наслаждаться игрой без лагов, даже с большим количеством игроков. Мы регулярно обновляем сервер и добавляем новые возможности, чтобы игровой процесс всегда оставался свежим и интересным. Присоединяйтесь к нам, стройте свои уникальные проекты, исследуйте мир и создавайте незабываемые моменты вместе с HLVRSXcraft!
             </p>
+            <!-- Здесь обновлены скриншоты с использованием прямой ссылки из postimg.cc -->
             <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
                 <img src="https://i.postimg.cc/MGp1px5K/2025-06-27-07-32-07.png" alt="Скриншот сервера Minecraft 1" class="rounded-lg shadow-md border border-custom-blue">
                 <img src="https://i.postimg.cc/xCkHLRBw/2025-06-27-07-46-33.png" alt="Скриншот сервера Minecraft 2" class="rounded-lg shadow-md border border-custom-blue">
             </div>
         </section>
 
+        <!-- Секция "Правила" -->
         <section id="rules" class="bg-custom-black rounded-lg shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue">
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-6 text-custom-blue">
                 <i class="fas fa-book-open mr-3"></i>Правила сервера
@@ -210,6 +223,7 @@
         </section>
 
 
+        <!-- Секция "Доступ к проходке на сервер" -->
         <section id="whitelist-access" class="bg-custom-black rounded-lg shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue">
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-6 text-custom-blue">
                 <i class="fas fa-key mr-3"></i>Доступ к проходке на сервер
@@ -228,6 +242,7 @@
             </div>
         </section>
 
+        <!-- Секция "Discord" -->
         <section id="discord" class="bg-custom-black rounded-lg shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue">
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-6 text-custom-blue">
                 <i class="fab fa-discord mr-3"></i>Наш Discord-сервер
@@ -246,28 +261,31 @@
                 <h3 class="text-2xl sm:text-3xl font-bold text-center mb-6 text-custom-blue">
                     <i class="fas fa-bullhorn mr-3"></i>Последние новости
                 </h3>
-<div class="bg-custom-dark-blue p-4 rounded-lg shadow-md border border-custom-blue">
-                        
-                        <div class="bg-custom-dark-blue p-4 rounded-lg shadow-md border border-custom-blue">
+                <div class="space-y-4">
+                    <!-- Исправленная структура новости -->
+                    <div class="bg-custom-dark-blue p-4 rounded-lg shadow-md border border-custom-blue">
                         <img src="https://i.postimg.cc/bJxhsX3d/2025-05-25-23-00-45.png" alt="Изображение новости" class="rounded-lg shadow-md mb-4 w-full h-auto object-cover max-h-60" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1E3A8A/F9FAFB?text=Ошибка+загрузки+изображения';">
                         <h4 class="text-xl font-bold text-custom-blue mb-2">Мы с ART_900 Намного улучшили сайт!!!</h4>
                         <p class="text-custom-white text-base mb-2">Наш сайт значительно улучшен и обновлен!
-
-Теперь он имеет современный дизайн с удобной навигационной панелью и разделен на логические секции
-("Главная", "О сервере", "Правила", "Доступ", "Discord").
-
-Добавлен интерактивный 3D-фон, который делает страницу более динамичной. 
-
-Интегрирован автоматический показ статуса Minecraft-сервера в реальном времени, включая количество игроков онлайн. 
-
-Общий вид сайта стал более привлекательным благодаря новым иконкам и улучшенной стилизации.</p>
+                            <br><br>
+                            Теперь он имеет современный дизайн с удобной навигационной панелью и разделен на логические секции
+                            ("Главная", "О сервере", "Правила", "Доступ", "Discord").
+                            <br><br>
+                            Добавлен интерактивный 3D-фон, который делает страницу более динамичной. 
+                            <br><br>
+                            Интегрирован автоматический показ статуса Minecraft-сервера в реальном времени, включая количество игроков онлайн. 
+                            <br><br>
+                            Общий вид сайта стал более привлекательным благодаря новым иконкам и улучшенной стилизации.
+                        </p>
                         <p class="text-custom-gray text-sm text-right">Опубликовано: 27.06.2025</p>
                     </div>
+                    <!-- Здесь будут добавляться новые новости из админ-панели -->
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- Подвал сайта -->
     <footer class="w-full max-w-4xl mx-auto text-center py-6 text-custom-gray text-sm mt-8">
         <p>&copy; 2025 HLVRSXcraft. Все права защищены.</p>
         <p class="mt-2">Сделано с <i class="fas fa-heart text-red-500"></i> для сообщества Minecraft.</p>
