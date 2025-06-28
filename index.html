@@ -5,39 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HLVRSXcraft - Сервер Minecraft</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'custom-blue': '#3B82F6',
-                        'custom-dark-blue': '#1E3A8A',
-                        'custom-black': '#1A1A1A',
-                        'custom-white': '#F9FAFB',
-                        'custom-gray': '#6B7280',
-                        'custom-green': '#10B981',
-                        'custom-red': '#EF4444',
-                    }
-                }
-            }
-        }
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* CSS Variables for theming */
+        :root {
+            --bg-color: #1A1A1A;
+            --text-color: #F9FAFB;
+            --accent-color: #3B82F6;
+            --dark-accent-color: #1E3A8A;
+            --gray-text-color: #6B7280;
+            --success-color: #10B981;
+            --error-color: #EF4444;
+            --button-discord: #4F46E5;
+            --button-discord-hover: #4338CA;
+            --border-color: var(--dark-accent-color);
+            --opacity-bg: rgba(0, 0, 0, 0.6);
+            --font-family-sans: 'Inter', sans-serif;
+            --font-family-monospace: 'monospace', monospace;
+        }
+
+        /* Theme 1: Original */
+        .theme-original {
+            --bg-color: #1A1A1A;
+            --text-color: #F9FAFB;
+            --accent-color: #3B82F6;
+            --dark-accent-color: #1E3A8A;
+            --gray-text-color: #6B7280;
+            --success-color: #10B981;
+            --error-color: #EF4444;
+            --button-discord: #4F46E5;
+            --button-discord-hover: #4338CA;
+            --border-color: var(--dark-accent-color);
+            --opacity-bg: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Theme 2: Fresh and Light */
+        .theme-fresh {
+            --bg-color: #F0F2F5; /* Light Gray */
+            --text-color: #333333; /* Dark Gray */
+            --accent-color: #007B8C; /* Teal */
+            --dark-accent-color: #E0F2F7; /* Soft Sky Blue */
+            --gray-text-color: #607D8B;
+            --success-color: #50C878; /* Mint Green */
+            --error-color: #D32F2F;
+            --button-discord: #007B8C;
+            --button-discord-hover: #005F6B;
+            --border-color: #B0BEC5; /* Light Blue-Gray */
+            --opacity-bg: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Theme 3: Deep and Luxurious */
+        .theme-luxury {
+            --bg-color: #1A0033; /* Dark Purple */
+            --text-color: #F5F5DC; /* Cream */
+            --accent-color: #FFD700; /* Gold */
+            --dark-accent-color: #0C0C2D; /* Very Dark Indigo */
+            --gray-text-color: #BDBDBD;
+            --success-color: #008080; /* Teal Green */
+            --error-color: #CC0000;
+            --button-discord: #8A2BE2; /* Blue Violet */
+            --button-discord-hover: #6A1BAA;
+            --border-color: #CD7F32; /* Bronze */
+            --opacity-bg: rgba(0, 0, 0, 0.75);
+        }
+
+        /* Theme 4: Vibrant and Playful (Updated) */
+        .theme-playful {
+            --bg-color: #311B92; /* Deep Indigo/Violet */
+            --text-color: #E0E0E0; /* Light Gray, for contrast */
+            --accent-color: #FFEB3B; /* Bright Yellow, for primary accents */
+            --dark-accent-color: #4A148C; /* Darker Purple, for section backgrounds */
+            --gray-text-color: #B39DDB; /* Lighter Purple for subtle text */
+            --success-color: #8BC34A; /* Light Green */
+            --error-color: #FF5252; /* Red */
+            --button-discord: #7C4DFF; /* Vibrant Purple for Discord button */
+            --button-discord-hover: #651FFF; /* Darker Vibrant Purple */
+            --border-color: var(--dark-accent-color);
+            --opacity-bg: rgba(0, 0, 0, 0.7); /* Dark opacity for dark theme */
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #1A1A1A;
-            color: #F9FAFB;
+            font-family: var(--font-family-sans);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            /* Fixed background image - it does not change with theme */
             background-image: url('https://i.postimg.cc/nVmVSm5t/2025-06-19-02-04-15.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             position: relative;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
         body::before {
@@ -47,8 +106,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: var(--opacity-bg);
             z-index: -1;
+            transition: background-color 0.5s ease;
         }
 
         html {
@@ -60,19 +120,21 @@
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            background-color: #1E3A8A;
+            background-color: var(--dark-accent-color);
             border-radius: 0.375rem;
             padding: 0.75rem 1rem;
-            border: 1px solid #3B82F6;
+            border: 1px solid var(--accent-color);
+            transition: background-color 0.5s ease, border-color 0.5s ease;
         }
         .ip-text {
-            color: #F9FAFB;
+            color: var(--text-color);
             font-size: 1.25rem;
             line-height: 1.75rem;
-            font-family: 'monospace', monospace;
+            font-family: var(--font-family-monospace);
             word-break: break-all;
             margin-right: 0.75rem;
             margin-bottom: 0.5rem;
+            transition: color 0.5s ease;
         }
         @media (min-width: 640px) {
             .ip-text {
@@ -82,29 +144,20 @@
         }
 
         .copy-button {
-            background-color: #3B82F6;
-            color: #F9FAFB;
+            background-color: var(--accent-color);
+            color: var(--text-color); /* Default text color */
             padding: 0.5rem 1rem;
             border-radius: 0.375rem;
-            transition-property: background-color, border-color, color;
-            transition-duration: 200ms;
+            transition: background-color 0.5s ease, color 0.5s ease;
             font-size: 1rem;
             line-height: 1.5rem;
         }
         .copy-button:hover {
-            background-color: #1E3A8A;
+            background-color: var(--dark-accent-color);
         }
-        @media (max-width: 640px) {
-            .ip-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .ip-text {
-                text-align: center;
-            }
-            .copy-button {
-                width: 100%;
-            }
+        /* Specific text color for copy button in playful theme */
+        .theme-playful .copy-button {
+            color: var(--bg-color); /* Dark text on bright yellow accent */
         }
 
         #threejs-background {
@@ -116,18 +169,176 @@
             z-index: -2;
             pointer-events: none;
         }
-        main section:not(#home) {
-            display: none;
+        
+        /* No section transitions - sections are hidden/shown instantly */
+        main section {
+            display: none; /* Hidden by default */
+        }
+        main section.active-section {
+            display: block; /* Show the section instantly */
+        }
+
+
+        /* Apply theme colors to Tailwind classes */
+        .bg-custom-black { background-color: var(--bg-color); transition: background-color 0.5s ease; }
+        .text-custom-white { color: var(--text-color); transition: color 0.5s ease; }
+        .text-custom-gray { color: var(--gray-text-color); transition: color 0.5s ease; }
+        .text-custom-blue { color: var(--accent-color); transition: color 0.5s ease; }
+        .hover\:text-custom-blue:hover { color: var(--accent-color); transition: color 0.5s ease; }
+        .bg-custom-blue { background-color: var(--accent-color); transition: background-color 0.5s ease; }
+        .hover\:bg-custom-blue:hover { background-color: var(--dark-accent-color); transition: background-color 0.5s ease; }
+        .bg-custom-dark-blue { background-color: var(--dark-accent-color); transition: background-color 0.5s ease; }
+        .border-custom-dark-blue { border-color: var(--border-color); transition: border-color 0.5s ease; }
+        .border-custom-blue { border-color: var(--accent-color); transition: border-color 0.5s ease; }
+        .bg-indigo-600 { background-color: var(--button-discord); transition: background-color 0.5s ease; }
+        .hover\:bg-indigo-700:hover { background-color: var(--button-discord-hover); transition: background-color 0.5s ease; }
+
+        /* Text color for "Попросить доступ" button (bg-custom-blue) in playful theme */
+        .theme-playful .inline-block.bg-custom-blue.text-custom-white {
+            color: var(--bg-color); /* Use dark background color for text on bright accent */
+        }
+
+
+        .w-4.h-4.rounded-full[style*="background-color: gray"] { background-color: var(--gray-text-color) !important; transition: background-color 0.5s ease; }
+        .w-4.h-4.rounded-full[style*="background-color: #10B981"] { background-color: var(--success-color) !important; transition: background-color 0.5s ease; }
+        .w-4.h-4.rounded-full[style*="background-color: #EF4444"] { background-color: var(--error-color) !important; transition: background-color 0.5s ease; }
+
+        /* Theme switcher positioning and styling */
+        .theme-switcher-container {
+            position: fixed;
+            top: 50%; /* Center vertically */
+            left: 0; /* Align to the very left edge */
+            transform: translateY(-50%) translateX(calc(-100% + 5px)); /* Hidden by default, showing only 5px */
+            transition: transform 0.3s ease-in-out; /* Smooth slide animation */
+            z-index: 100;
+            display: flex;
+            flex-direction: column; /* Stack buttons vertically */
+            gap: 0.5rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 0.75rem;
+            border-radius: 0 0.5rem 0.5rem 0; /* Rounded only on right side */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 60px; /* Constrain width for icon buttons */
+        }
+
+        .theme-switcher-container.visible {
+            transform: translateY(-50%) translateX(0); /* Fully visible */
+        }
+
+        .theme-button {
+            display: flex; /* Allow icon and text to be side-by-side or icon-only */
+            justify-content: center; /* Center icon */
+            align-items: center;
+            width: 48px; /* Fixed width for a square-ish button */
+            height: 48px; /* Fixed height for a square-ish button */
+            border-radius: 0.375rem;
+            font-size: 1.5rem; /* Larger icon size */
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+            border: 1px solid var(--accent-color);
+            background-color: var(--dark-accent-color);
+            color: var(--text-color);
+        }
+
+        .theme-button.active, .theme-button:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+        }
+        .theme-button i {
+            pointer-events: none; /* Prevent icon clicks from interfering */
+        }
+
+        /* Player list header (for static and dynamic sections) */
+        .player-list-header {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(100px, 1fr)); /* Default 3 columns for static */
+            gap: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 0.5rem;
+        }
+        .player-list-header.online-header {
+            grid-template-columns: repeat(2, minmax(100px, 1fr)); /* 2 columns for online players header */
+        }
+
+        /* General card style for players */
+        .player-card {
+            display: grid;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            background-color: var(--bg-color); /* Background for the "window" */
+            border: 1px solid var(--accent-color);
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+            transition: all 0.2s ease-in-out; /* Smooth transition for hover effects */
+            align-items: center;
+            text-align: center;
+            margin-bottom: 0.5rem; /* Space below each card */
+        }
+        .player-card:last-child {
+            margin-bottom: 0;
+        }
+        .player-card:hover {
+            transform: translateY(-3px) scale(1.01); /* Slight lift and scale on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+        }
+        /* Specific grid for owner card (3 columns) */
+        .player-card.owner-card {
+            grid-template-columns: repeat(3, minmax(100px, 1fr)); 
+        }
+        /* Specific grid for dynamically inserted online player cards (2 columns) */
+        .player-card.online-player-card {
+            grid-template-columns: repeat(2, minmax(100px, 1fr)); 
+        }
+
+        /* Adjust the online-players-list container for spacing */
+        #online-players-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem; /* Space between player cards */
+        }
+
+        /* Mobile responsiveness for player cards */
+        @media (max-width: 640px) {
+            .player-list-header {
+                grid-template-columns: 1fr 1fr; /* On small screens, hide role column from header for main player list */
+            }
+            .player-list-header div:last-child { /* Hide "Роль" header on small screens */
+                display: none;
+            }
+
+            .player-list-header.online-header {
+                grid-template-columns: 1fr 1fr; /* Ensure online header is 2 columns on small screens */
+            }
+
+            .player-card.owner-card {
+                 grid-template-columns: 1fr 1fr; /* Owner card also becomes 2 columns on small screens */
+            }
+            .player-card.owner-card div:last-child { /* Hide role data on very small screens for owner card */
+                display: none;
+            }
         }
     </style>
 </head>
-<body class="flex flex-col items-center justify-start min-h-screen p-4 sm:p-6 md:p-8">
-    <nav class="w-full bg-custom-black bg-opacity-80 rounded-lg shadow-lg py-4 px-6 mb-8 fixed top-0 left-0 right-0 z-50 flex justify-center">
+<body class="flex flex-col items-center justify-start min-h-screen p-4 sm:p-6 md:p-8 theme-original">
+    <div id="theme-switcher-container" class="theme-switcher-container">
+        <button class="theme-button active" data-theme="original" title="Оригинальная тема"><i class="fas fa-cogs"></i></button>
+        <button class="theme-button" data-theme="fresh" title="Свежая тема"><i class="fas fa-cloud"></i></button>
+        <button class="theme-button" data-theme="luxury" title="Роскошная тема"><i class="fas fa-gem"></i></button>
+        <button class="theme-button" data-theme="playful" title="Игривая тема"><i class="fas fa-palette"></i></button>
+    </div>
+
+    <nav class="w-full bg-custom-black bg-opacity-80 rounded-xl shadow-lg py-4 px-6 mb-8 fixed top-0 left-0 right-0 z-50 flex justify-center">
         <ul class="flex flex-wrap justify-center gap-4 sm:gap-6">
             <li><a href="#home" class="text-custom-white hover:text-custom-blue transition-colors duration-200 font-semibold text-lg" onclick="showSection('home')">Главная</a></li>
             <li><a href="#about" class="text-custom-white hover:text-custom-blue transition-colors duration-200 font-semibold text-lg" onclick="showSection('about')">О сервере</a></li>
             <li><a href="#rules" class="text-custom-white hover:text-custom-blue transition-colors duration-200 font-semibold text-lg" onclick="showSection('rules')">Правила</a></li>
+            <li><a href="#players" class="text-custom-white hover:text-custom-blue transition-colors duration-200 font-semibold text-lg" onclick="showSection('players')">Игроки</a></li>
             <li><a href="#whitelist-access" class="text-custom-white hover:text-custom-blue transition-colors duration-200 font-semibold text-lg" onclick="showSection('whitelist-access')">Доступ</a></li>
+            <li><a href="#donate" class="text-custom-white hover:text-custom-blue transition-colors duration-200 font-semibold text-lg" onclick="showSection('donate')">Поддержать</a></li>
             <li><a href="#discord" class="text-custom-white hover:text-custom-blue transition-colors duration-200 font-semibold text-lg" onclick="showSection('discord')">Discord & Новости</a></li>
         </ul>
     </nav>
@@ -135,7 +346,7 @@
     <canvas id="threejs-background"></canvas>
 
     <main class="w-full max-w-4xl mx-auto mt-24">
-        <section id="home" class="bg-custom-black rounded-lg shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue relative">
+        <section id="home" class="bg-custom-black rounded-xl shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue relative active-section">
             <h1 class="text-4xl sm:text-5xl font-bold text-center mb-6 text-custom-blue">
                 HLVRSXcraft
             </h1>
@@ -174,7 +385,7 @@
             </p>
         </section>
 
-        <section id="about" class="bg-custom-black rounded-lg shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue">
+        <section id="about" class="bg-custom-black rounded-xl shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue">
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-6 text-custom-blue">
                 <i class="fas fa-info-circle mr-3"></i>О сервере
             </h2>
@@ -185,16 +396,16 @@
                 Ядро сервера PaperMC обеспечивает стабильность и высокую производительность, что позволяет вам наслаждаться игрой без лагов, даже с большим количеством игроков. Мы регулярно обновляем сервер и добавляем новые возможности, чтобы игровой процесс всегда оставался свежим и интересным. Присоединяйтесь к нам, стройте свои уникальные проекты, исследуйте мир и создавайте незабываемые моменты вместе с HLVRSXcraft!
             </p>
             <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <img src="https://i.postimg.cc/MGp1px5K/2025-06-27-07-32-07.png" alt="Скриншот сервера Minecraft 1" class="rounded-lg shadow-md border border-custom-blue">
-                <img src="https://i.postimg.cc/xCkHLRBw/2025-06-27-07-46-33.png" alt="Скриншот сервера Minecraft 2" class="rounded-lg shadow-md border border-custom-blue">
+                <img src="https://i.postimg.cc/MGp1px5K/2025-06-27-07-32-07.png" alt="Изображение новости" class="rounded-xl shadow-md border border-custom-blue">
+                <img src="https://i.postimg.cc/xCkHLRBw/2025-06-27-07-46-33.png" alt="Изображение новости" class="rounded-xl shadow-md border border-custom-blue">
             </div>
         </section>
 
-        <section id="rules" class="bg-custom-black rounded-lg shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue">
+        <section id="rules" class="bg-custom-black rounded-xl shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue">
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-6 text-custom-blue">
                 <i class="fas fa-book-open mr-3"></i>Правила сервера
             </h2>
-            <div class="bg-custom-dark-blue rounded-md p-4 sm:p-5 border border-custom-blue">
+            <div class="bg-custom-dark-blue rounded-xl p-4 sm:p-5 border border-custom-blue">
                 <ul class="list-disc list-inside text-custom-white text-base sm:text-lg leading-relaxed">
                     <li class="mb-2"><strong class="text-custom-blue">1. Уважение:</strong> Уважайте всех игроков и администрацию. Оскорбления, троллинг и дискриминация запрещены.</li>
                     <li class="mb-2"><strong class="text-custom-blue">2. Гриферство:</strong> Гриферство (разрушение чужих построек, воровство) строго запрещено. Нарушители будут наказаны.</li>
@@ -208,7 +419,50 @@
             </div>
         </section>
 
-        <section id="whitelist-access" class="bg-custom-black rounded-lg shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue">
+        <section id="players" class="bg-custom-black rounded-xl shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-6 text-custom-blue">
+                <i class="fas fa-users mr-3"></i>Игроки
+            </h2>
+            <div class="bg-custom-dark-blue rounded-xl shadow-lg p-4 sm:p-5 border border-custom-blue">
+                <!-- Section for Known Players (e.g., Owners, Admins) -->
+                <h3 class="text-2xl font-bold text-custom-white mb-4 border-b pb-2 border-custom-blue">
+                    <i class="fas fa-users mr-2"></i>Постоянные игроки
+                </h3>
+                <div class="player-list-header text-custom-blue mb-2">
+                    <div>Ник</div>
+                    <div>Статус</div>
+                    <div>Роль</div>
+                </div>
+                <div class="player-card owner-card text-custom-white">
+                    <div>HLVRSX</div>
+                    <div>Не забанен</div>
+                    <div>Владелец</div>
+            <div class="player-item-grid text-custom-white">
+                    <div>Art_900</div>
+                    <div class="text-custom-white">Не забанен</div>
+                    <div>Админ</div>
+                    </div>
+                </div>
+
+                <!-- Section for Currently Online Players -->
+                <h3 class="text-2xl font-bold text-custom-white mt-8 mb-4 border-b pb-2 border-custom-blue">
+                    <i class="fas fa-gamepad mr-2"></i>Игроки онлайн
+                </h3>
+                <div class="player-list-header text-custom-blue mb-2 online-header">
+                    <div>Ник</div>
+                    <div>Статус</div>
+                </div>
+                <div id="online-players-list" class="space-y-3">
+                    <!-- Dynamic online players will be inserted here -->
+                    <p class="text-custom-gray text-center" id="no-online-players-message">Загрузка онлайн-игроков...</p>
+                </div>
+                <p class="text-sm text-custom-gray mt-4 text-center text-custom-gray">
+                    Присоединяйтесь к нашему сообществу, чтобы стать частью списка игроков!
+                </p>
+            </div>
+        </section>
+
+        <section id="whitelist-access" class="bg-custom-black rounded-xl shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue">
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-6 text-custom-blue">
                 <i class="fas fa-key mr-3"></i>Доступ к проходке на сервер
             </h2>
@@ -226,7 +480,25 @@
             </div>
         </section>
 
-        <section id="discord" class="bg-custom-black rounded-lg shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue">
+        <section id="donate" class="bg-custom-black rounded-xl shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-6 text-custom-blue">
+                <i class="fas fa-hand-holding-heart mr-3"></i>Донат, который наху никому не нужен
+            </h2>
+            <p class="text-custom-white text-base sm:text-lg leading-relaxed mb-6 bg-custom-dark-blue rounded-md p-4 sm:p-5 border border-custom-blue">
+                Если вы хотите не играть на атерносе, то уйдите с проекта.
+            </p>
+            <div class="text-center">
+                <a href="https://discord.gg/mzkq4y9H" target="_blank" rel="noopener noreferrer"
+                   class="inline-block bg-indigo-600 hover:bg-indigo-700 text-custom-white px-8 py-4 rounded-full transition-colors duration-200 text-xl font-semibold shadow-lg">
+                    <i class="fab fa-discord mr-3"></i>типо discord
+                </a>
+                <p class="text-sm text-custom-gray mt-4">
+                    зачем я вообще эту вкладку добавил но пусть будет.
+                </p>
+            </div>
+        </section>
+
+        <section id="discord" class="bg-custom-black rounded-xl shadow-xl p-6 sm:p-8 md:p-10 w-full mb-8 border border-custom-dark-blue">
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-6 text-custom-blue">
                 <i class="fab fa-discord mr-3"></i>Наш Discord-сервер
             </h2>
@@ -245,8 +517,9 @@
                     <i class="fas fa-bullhorn mr-3"></i>Последние новости
                 </h3>
                 <div class="space-y-4">
-                    <div class="bg-custom-dark-blue p-4 rounded-lg shadow-md border border-custom-blue">
-                        <img src="https://i.postimg.cc/bJxhsX3d/2025-05-25-23-00-45.png" alt="Изображение новости" class="rounded-lg shadow-md mb-4 w-full h-auto object-cover max-h-60" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1E3A8A/F9FAFB?text=Ошибка+загрузки+изображения';">
+                    <!-- МЕТКА ДЛЯ ВСТАВКИ НОВЫХ НОВОСТЕЙ: Вставьте сгенерированный HTML-код новости здесь -->
+                    <div class="bg-custom-dark-blue p-4 rounded-xl shadow-md border border-custom-blue">
+                        <img src="https://i.postimg.cc/bJxhsX3d/2025-05-25-23-00-45.png" alt="Изображение новости" class="rounded-xl shadow-md mb-4 w-full h-auto object-cover max-h-60" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1E3A8A/F9FAFB?text=Ошибка+загрузки+изображения';">
                         <h4 class="text-xl font-bold text-custom-blue mb-2">Мы с ART_900 Намного улучшили сайт!!!</h4>
                         <p class="text-custom-white text-base mb-2">Наш сайт значительно улучшен и обновлен!
                             <br><br>
@@ -261,6 +534,7 @@
                         </p>
                         <p class="text-custom-gray text-sm text-right">Опубликовано: 27.06.2025</p>
                     </div>
+                    <!-- КОНЕЦ МЕТКИ ДЛЯ ВСТАВКИ НОВЫХ НОВОСТЕЙ -->
                 </div>
             </div>
         </section>
@@ -272,6 +546,7 @@
     </footer>
 
     <script>
+        // Three.js background animation initialization
         window.onload = function () {
             const canvas = document.getElementById('threejs-background');
             if (!canvas) {
@@ -284,16 +559,16 @@
             const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
 
-            const geometry = new THREE.SphereGeometry(1, 32, 32);
-            const material = new THREE.MeshBasicMaterial({ color: 0x3B82F6, wireframe: true, transparent: true, opacity: 0.2 });
-            const sphere = new THREE.Mesh(geometry, material);
+            // Update Three.js sphere and particle colors to use CSS variables
+            const sphereMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color(getComputedStyle(document.body).getPropertyValue('--accent-color')), wireframe: true, transparent: true, opacity: 0.2 });
+            const sphere = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), sphereMaterial);
             scene.add(sphere);
 
             const particleCount = 200;
             const particles = new THREE.Group();
             for (let i = 0; i < particleCount; i++) {
                 const particleGeometry = new THREE.SphereGeometry(0.05, 8, 8);
-                const particleMaterial = new THREE.MeshBasicMaterial({ color: 0x1E3A8A, transparent: true, opacity: 0.5 });
+                const particleMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color(getComputedStyle(document.body).getPropertyValue('--dark-accent-color')), transparent: true, opacity: 0.5 });
                 const particle = new THREE.Mesh(particleGeometry, particleMaterial);
                 particle.position.set(
                     (Math.random() - 0.5) * 20,
@@ -335,9 +610,17 @@
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
+
+            // Function to update Three.js material colors based on current theme
+            window.updateThreeJsColors = () => {
+                sphereMaterial.color.set(new THREE.Color(getComputedStyle(document.body).getPropertyValue('--accent-color')));
+                particles.children.forEach(p => {
+                    p.material.color.set(new THREE.Color(getComputedStyle(document.body).getPropertyValue('--dark-accent-color')));
+                });
+            };
         };
 
-
+        // IP copy logic
         document.addEventListener('DOMContentLoaded', () => {
             const copyButton = document.getElementById('copy-button');
             const ipAddressSpan = document.getElementById('ip-address');
@@ -359,14 +642,14 @@
                             copyMessage.classList.add('opacity-0');
                         }, 2000);
                     } catch (err) {
-                        console.error('Не удалось скопировать IP: ', err);
+                        console.error('Failed to copy IP: ', err);
                     } finally {
                         document.body.removeChild(tempInput);
                     }
                 });
             }
 
-
+            // Server status fetch logic and online players list update
             async function fetchServerStatus() {
                 const ip = 'HLVRSXcraft.aternos.me';
                 const port = '25495';
@@ -374,15 +657,18 @@
                 const serverStatusDot = document.getElementById('server-status-dot');
                 const serverStatusText = document.getElementById('server-status-text');
                 const playersOnlineText = document.getElementById('players-online-text');
+                const onlinePlayersListDiv = document.getElementById('online-players-list');
+                const noOnlinePlayersMessage = document.getElementById('no-online-players-message');
 
-                if (!serverStatusDot || !serverStatusText || !playersOnlineText) {
-                    console.warn("Элементы статуса сервера не найдены. Пропуск получения статуса.");
+                if (!serverStatusDot || !serverStatusText || !playersOnlineText || !onlinePlayersListDiv || !noOnlinePlayersMessage) {
+                    console.warn("One or more server status/player list elements not found. Skipping status fetch.");
                     return;
                 }
 
                 serverStatusDot.style.backgroundColor = 'gray';
                 serverStatusText.textContent = 'Загрузка...';
                 playersOnlineText.textContent = '';
+                onlinePlayersListDiv.innerHTML = '<p class="text-custom-gray text-center">Загрузка онлайн-игроков...</p>'; // Clear and show loading
 
                 try {
                     const response = await fetch(`https://api.mcstatus.io/v2/status/java/${ip}:${port}`);
@@ -399,28 +685,52 @@
                         }
 
                         if (isOfflineMotd) {
-                            serverStatusDot.style.backgroundColor = '#EF4444';
+                            serverStatusDot.style.backgroundColor = 'var(--error-color)';
                             serverStatusText.textContent = 'Выключен';
                             playersOnlineText.textContent = ` (0/${data.players ? data.players.max : 0})`;
+                            onlinePlayersListDiv.innerHTML = '<p class="text-custom-gray text-center">Сервер выключен.</p>';
                         } else {
-                            serverStatusDot.style.backgroundColor = '#10B981';
+                            serverStatusDot.style.backgroundColor = 'var(--success-color)';
                             serverStatusText.textContent = 'Включен';
                             if (data.players) {
                                 playersOnlineText.textContent = ` (${data.players.online}/${data.players.max})`;
+
+                                // Update online players list
+                                if (data.players.list && data.players.list.length > 0) {
+                                    onlinePlayersListDiv.innerHTML = ''; // Clear previous list
+                                    data.players.list.forEach(player => {
+                                        // Use player.name_clean for more reliable player names
+                                        const playerName = player.name_clean || player.name || 'Неизвестный игрок'; 
+                                        const playerDiv = document.createElement('div');
+                                        // Apply the new class for online player cards
+                                        playerDiv.className = 'player-card online-player-card text-custom-white'; 
+                                        playerDiv.innerHTML = `
+                                            <div>${playerName}</div>
+                                            <div class="text-custom-green">Онлайн</div>
+                                        `;
+                                        onlinePlayersListDiv.appendChild(playerDiv);
+                                    });
+                                } else {
+                                    onlinePlayersListDiv.innerHTML = '<p class="text-custom-gray text-center">Нет игроков онлайн.</p>';
+                                }
+
                             } else {
                                 playersOnlineText.textContent = '';
+                                onlinePlayersListDiv.innerHTML = '<p class="text-custom-gray text-center">Информация об игроках недоступна.</p>';
                             }
                         }
                     } else {
-                        serverStatusDot.style.backgroundColor = '#EF4444';
+                        serverStatusDot.style.backgroundColor = 'var(--error-color)';
                         serverStatusText.textContent = 'Выключен';
                         playersOnlineText.textContent = '';
+                        onlinePlayersListDiv.innerHTML = '<p class="text-custom-gray text-center">Сервер выключен.</p>';
                     }
                 } catch (error) {
-                    console.error('Ошибка при получении статуса сервера:', error);
-                    serverStatusDot.style.backgroundColor = '#EF4444';
+                    console.error('Error fetching server status:', error);
+                    serverStatusDot.style.backgroundColor = 'var(--error-color)';
                     serverStatusText.textContent = 'Выключен';
                     playersOnlineText.textContent = '';
+                    onlinePlayersListDiv.innerHTML = '<p class="text-custom-gray text-center">Ошибка загрузки статуса сервера.</p>';
                 }
             }
 
@@ -428,22 +738,92 @@
             setInterval(fetchServerStatus, 30000);
         });
 
+        // Global function for section visibility toggle - INSTANT SWITCH
         window.showSection = (sectionId) => {
             const sections = document.querySelectorAll('main section');
+            const targetSection = document.getElementById(sectionId);
+
+            // Hide all sections instantly
             sections.forEach(section => {
                 section.style.display = 'none';
+                section.classList.remove('active-section'); // Remove active class if it was there
             });
-            const targetSection = document.getElementById(sectionId);
+
+            // Show the target section instantly
             if (targetSection) {
                 targetSection.style.display = 'block';
-                targetSection.scrollIntoView({ behavior: 'smooth' });
+                targetSection.classList.add('active-section'); // Add active class to indicate it's the current section
             } else {
                 console.error(`Секция с ID '${sectionId}' не найдена.`);
             }
+            
+            // Update active nav link (optional visual feedback for navigation)
+            document.querySelectorAll('nav ul li a').forEach(link => {
+                link.classList.remove('active-nav-link'); 
+            });
+            const navLink = document.querySelector(`nav ul li a[href="#${sectionId}"]`);
+            if (navLink) {
+                navLink.classList.add('active-nav-link');
+            }
         };
 
+        // Set "Home" section to display on initial load and handle initial active state for nav
         document.addEventListener('DOMContentLoaded', () => {
-            window.showSection('home');
+            const homeSection = document.getElementById('home');
+            if (homeSection) {
+                homeSection.style.display = 'block'; 
+                homeSection.classList.add('active-section'); // Add active class
+            }
+            // Set initial active nav link
+            document.querySelector('nav ul li a[href="#home"]').classList.add('active-nav-link');
+            
+            const themeSwitcher = document.getElementById('theme-switcher-container');
+            let hideTimeout;
+
+            // Function to show the theme switcher
+            const showThemeSwitcher = () => {
+                clearTimeout(hideTimeout); // Clear any pending hide timeouts
+                themeSwitcher.classList.add('visible');
+            };
+
+            // Function to hide the theme switcher after a delay
+            const hideThemeSwitcher = () => {
+                hideTimeout = setTimeout(() => {
+                    themeSwitcher.classList.remove('visible');
+                }, 500); // Hide after 0.5 seconds
+            };
+
+            // Event listeners for showing/hiding
+            themeSwitcher.addEventListener('mouseenter', showThemeSwitcher);
+            themeSwitcher.addEventListener('mouseleave', hideThemeSwitcher);
+
+            // Hide on initial load after a short delay
+            setTimeout(hideTimeout, 500); 
+            setTimeout(hideThemeSwitcher, 500); // Hide after 0.5 seconds initially
+
+            const themeButtons = document.querySelectorAll('.theme-button');
+            const body = document.body;
+
+            themeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const theme = button.dataset.theme;
+
+                    // Remove existing theme classes
+                    body.classList.remove('theme-original', 'theme-fresh', 'theme-luxury', 'theme-playful');
+                    
+                    // Add the new theme class
+                    body.classList.add(`theme-${theme}`);
+
+                    // Update active button state
+                    themeButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    // Update Three.js colors after theme change
+                    if (window.updateThreeJsColors) {
+                        window.updateThreeJsColors();
+                    }
+                });
+            });
         });
     </script>
 </body>
