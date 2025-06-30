@@ -183,66 +183,6 @@
             color: var(--accent-color);
         }
 
-        /* IP Container */
-        .ip-container {
-            display: flex;
-            flex-direction: column; /* Stack vertically */
-            justify-content: center;
-            align-items: center; /* Center horizontally */
-            background-color: var(--dark-accent-color);
-            border-radius: 0.75rem; /* More rounded */
-            padding: 1rem 1.5rem;
-            border: 2px solid var(--accent-color); /* Thicker border */
-            box-shadow: 0 0 15px var(--accent-color); /* Glow effect */
-            transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
-        }
-        .ip-text {
-            color: var(--text-color);
-            font-size: 1.5rem;
-            line-height: 1.75rem;
-            font-family: var(--font-family-monospace);
-            word-break: break-all;
-            margin-bottom: 0.5rem; /* Space below IP text, above button */
-            transition: color 0.5s ease;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* Subtle text shadow */
-        }
-        @media (min-width: 640px) {
-            .ip-text {
-                font-size: 2rem;
-            }
-        }
-
-        /* Copy Button */
-        .copy-button {
-            background-color: var(--accent-color);
-            color: var(--bg-color); /* Text color contrasting with accent */
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            font-size: 1.125rem;
-            line-height: 1.5rem;
-            font-weight: 700;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-            margin-bottom: 0.5rem; /* Space below button, above copy message */
-        }
-        .copy-button:hover {
-            background-color: var(--dark-accent-color);
-            color: var(--text-color);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-        }
-        .copy-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        /* Style for the small IP text under the copy message */
-        .small-ip-text {
-            font-family: var(--font-family-monospace);
-            font-size: 0.875rem; /* Smaller text */
-            color: var(--gray-text-color);
-            margin-top: 0.25rem;
-        }
-
         /* Three.js background */
         #threejs-background {
             position: fixed;
@@ -431,9 +371,7 @@
                 Присоединяйтесь к сообществу, стройте и выживайте вместе!
             </span>
         </p>
-        <a href="#home" class="inline-block bg-custom-blue hover:bg-custom-dark-blue text-custom-white px-8 py-4 rounded-full transition-all duration-300 text-xl font-semibold shadow-xl button-glow">
-            <i class="fas fa-play-circle mr-3"></i>Начать играть
-        </a>
+        <!-- The "Получить доступ" button is removed from the header -->
     </header>
 
     <main class="w-full max-w-4xl mx-auto p-4 sm:p-6 md:p-8 relative z-10">
@@ -441,6 +379,8 @@
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-6 text-custom-blue font-pixel">
                 <i class="fas fa-server mr-3"></i>Статус сервера
             </h2>
+
+            <!-- Removed the central text and button as requested -->
 
             <div class="text-center mb-6">
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-custom-white text-xl sm:text-2xl bg-custom-dark-blue rounded-xl p-4 sm:p-5 border border-custom-blue shadow-md">
@@ -452,31 +392,14 @@
                 </div>
             </div>
 
-            <div class="text-center mb-6">
-                <!-- IP Container now contains the button and IP text below it -->
-                <div class="ip-container">
-                    <button id="copy-button" class="copy-button">
-                        <i class="fas fa-copy mr-2"></i>Копировать IP
-                    </button>
-                    <!-- Small message appears after copying -->
-                    <p id="copy-message" class="text-sm text-custom-white mt-2 opacity-0 transition-opacity duration-300">IP скопирован!</p>
-                    <!-- Always visible small IP text -->
-                    <p id="ip-address" class="small-ip-text select-all">
-                        HLVRSXcraft.aternos.me:25495
-                    </p>
-                </div>
-            </div>
-
             <div class="mb-6 text-center">
                 <p class="text-lg sm:text-xl font-semibold mb-2 text-custom-gray">Версия Minecraft:</p>
                 <p class="text-custom-white text-xl sm:text-2xl bg-custom-dark-blue rounded-xl p-4 sm:p-5 border border-custom-blue shadow-md inline-block font-monospace">
                     1.21.5
                 </p>
             </div>
-
-            <p class="text-sm text-gray-400 text-center mt-8">
-                Сервер на Aternos, да, я бомж :)
-            </p>
+            
+            <!-- Removed the Aternos mention as requested -->
         </section>
 
         <section id="about" class="glass-card w-full mb-8">
@@ -518,7 +441,7 @@
                 <i class="fas fa-users mr-3"></i>Игроки
             </h2>
             <div class="glass-card-inner">
-                <!-- Section for Known Players (e.g., Owners, Admins) -->
+                <!-- Section for Known Players            ЯЙЦАЯЙЦАЯЙЦА                                (e.g., Owners, Admins) -->
                 <h3 class="text-2xl font-bold text-custom-white mb-4 border-b pb-2 border-custom-blue">
                     <i class="fas fa-user-shield mr-2"></i>Постоянные игроки
                 </h3>
@@ -536,6 +459,12 @@
                     <div>Art_900</div>
                     <div>Не забанен</div>
                     <div>Админ</div>
+                </div>
+                <!-- New player LEO_go added -->
+                <div class="player-card owner-card text-custom-white">
+                    <div>LEO_go</div>
+                    <div>Не забанен</div>
+                    <div>Игрок</div>
                 </div>
 
                 <!-- Section for Currently Online Players -->
@@ -558,36 +487,37 @@
 
         <section id="whitelist-access" class="glass-card w-full mb-8">
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-6 text-custom-blue font-pixel">
-                <i class="fas fa-key mr-3"></i>Доступ к проходке на сервер
+                <i class="fas fa-key mr-3"></i>Доступ к серверу
             </h2>
-            <p class="text-custom-white text-base sm:text-lg leading-relaxed mb-6 glass-card-inner">
-                HLVRSXcraft — это приватный сервер, где ценятся дружелюбие и созидание. Для того чтобы присоединиться к нашему сообществу, вам потребуется получить доступ (проходку). Это абсолютно бесплатно! Мы делаем это, чтобы поддерживать комфортную и безопасную атмосферу для всех игроков.
-            </p>
-            <div class="text-center">
+            <!-- Consolidated and shortened text for access -->
+            <div class="text-center mb-8 glass-card-inner">
+                <p class="text-custom-white text-lg sm:text-xl leading-relaxed mb-4">
+                    HLVRSXcraft — это приватный сервер, ценящий дружелюбие и созидание. Доступ предоставляется через Discord.
+                </p>
                 <p class="text-custom-white text-lg sm:text-xl font-semibold mb-4">
-                    Чтобы получить доступ, присоединяйтесь к нашему Discord-серверу и следуйте инструкциям в канале <span class="text-custom-blue font-bold">#проходка</span>.
+                    Присоединяйтесь к нашему Discord-серверу, чтобы получить проходку и IP-адрес сервера в канале <span class="text-custom-blue font-bold">#проходка</span>. Это бесплатно!
                 </p>
                 <a href="https://discord.gg/mzkq4y9H" target="_blank" rel="noopener noreferrer"
-                   class="inline-block bg-custom-blue hover:bg-custom-dark-blue text-custom-white px-8 py-4 rounded-full transition-all duration-300 text-xl font-semibold shadow-xl button-glow">
-                    <i class="fab fa-discord mr-3"></i>Попросить доступ
+                   class="inline-block mt-6 bg-custom-blue hover:bg-custom-dark-blue text-custom-white px-8 py-4 rounded-full transition-all duration-300 text-xl font-semibold shadow-xl button-glow">
+                    <i class="fab fa-discord mr-3"></i>Присоединиться к Discord
                 </a>
             </div>
         </section>
 
         <section id="donate" class="glass-card w-full mb-8">
             <h2 class="text-3xl sm:text-4xl font-bold text-center mb-6 text-custom-blue font-pixel">
-                <i class="fas fa-hand-holding-heart mr-3"></i>Донат, который наху никому не нужен
+                <i class="fas fa-hand-holding-heart mr-3"></i>Поддержать проект
             </h2>
             <p class="text-custom-white text-base sm:text-lg leading-relaxed mb-6 glass-card-inner">
-                Если вы хотите не играть на атерносе, то уйдите с проекта.
+                Так как я оплачиваю хостинг сам, я могу стать бомжом и сервер закроется. если хотите помочь то помогите
             </p>
             <div class="text-center">
                 <a href="https://discord.gg/mzkq4y9H" target="_blank" rel="noopener noreferrer"
                    class="inline-block bg-indigo-600 hover:bg-indigo-700 text-custom-white px-8 py-4 rounded-full transition-all duration-300 text-xl font-semibold shadow-xl button-glow">
-                    <i class="fab fa-discord mr-3"></i>типо discord
+                    <i class="fab fa-discord mr-3"></i>Наш Discord
                 </a>
                 <p class="text-sm text-custom-gray mt-4">
-                    зачем я вообще эту вкладку добавил но пусть будет.
+                    Присоединяйтесь к Discord, чтобы узнать, как поддержать проект.
                 </p>
             </div>
         </section>
@@ -760,45 +690,19 @@
             };
         };
 
-        // IP copy logic
+        // Server status fetch logic and online players list update
         document.addEventListener('DOMContentLoaded', () => {
-            const copyButton = document.getElementById('copy-button');
-            const displayIpText = document.getElementById('ip-address'); 
-            const copyMessage = document.getElementById('copy-message');
+            const serverStatusDot = document.getElementById('server-status-dot');
+            const serverStatusText = document.getElementById('server-status-text');
+            const playersOnlineText = document.getElementById('players-online-text');
+            const onlinePlayersListDiv = document.getElementById('online-players-list');
+            const noOnlinePlayersMessage = document.getElementById('no-online-players-message');
 
-            if (copyButton && displayIpText) { 
-                copyButton.addEventListener('click', () => {
-                    const ipAddress = displayIpText.textContent.trim(); 
-                    const tempInput = document.createElement('textarea');
-                    tempInput.value = ipAddress;
-                    document.body.appendChild(tempInput);
-                    tempInput.select();
-                    try {
-                        document.execCommand('copy');
-                        copyMessage.classList.remove('opacity-0');
-                        copyMessage.classList.add('opacity-100');
-                        setTimeout(() => {
-                            copyMessage.classList.remove('opacity-100');
-                            copyMessage.classList.add('opacity-0');
-                        }, 2000);
-                    } catch (err) {
-                        console.error('Failed to copy IP: ', err);
-                    } finally {
-                        document.body.removeChild(tempInput);
-                    }
-                });
-            }
-
-            // Server status fetch logic and online players list update
             async function fetchServerStatus() {
-                const ip = 'HLVRSXcraft.aternos.me';
+                // The API endpoint for mcstatus.io is still hardcoded with Aternos details,
+                // but these details are no longer displayed or referenced on the website.
+                const ip = 'HLVRSXcraft.aternos.me'; 
                 const port = '25495';
-
-                const serverStatusDot = document.getElementById('server-status-dot');
-                const serverStatusText = document.getElementById('server-status-text');
-                const playersOnlineText = document.getElementById('players-online-text');
-                const onlinePlayersListDiv = document.getElementById('online-players-list');
-                const noOnlinePlayersMessage = document.getElementById('no-online-players-message');
 
                 if (!serverStatusDot || !serverStatusText || !playersOnlineText || !onlinePlayersListDiv || !noOnlinePlayersMessage) {
                     console.warn("One or more server status/player list elements not found. Skipping status fetch.");
@@ -975,7 +879,6 @@
             themeSwitcher.addEventListener('mouseenter', showThemeSwitcher);
             themeSwitcher.addEventListener('mouseleave', hideThemeSwitcher);
 
-            setTimeout(hideTimeout, 500); 
             setTimeout(hideThemeSwitcher, 500); 
 
             const themeButtons = document.querySelectorAll('.theme-button');
